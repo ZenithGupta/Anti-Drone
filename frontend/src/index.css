@@ -1,0 +1,34 @@
+html, body, #root { height: 100%; margin: 0; font-family: system-ui, Arial, sans-serif; }
+.p-4 { padding: 1rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.font-bold { font-weight: 700; }
+.mt-4 { margin-top: 1rem; }
+.border { border: 1px solid #ccc; }
+.bg-gray-50 { background: #f9fafb; }
+.bg-black { background: #000; }
+.text-white { color: #fff; }
+.text-green-300 { color: #86efac; }
+.text-yellow-300 { color: #fde047; }
+.bg-indigo-600 { background: #4f46e5; }
+.bg-gray-700 { background: #374151; }
+.rounded { border-radius: .375rem; }
+.rounded-full { border-radius: 9999px; }
+.w-\[400px\] { width: 400px; }
+.h-\[400px\] { height: 400px; }
+.w-10 { width: 2.5rem; }
+.h-10 { height: 2.5rem; }
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.opacity-50 { opacity: .5; }
+.opacity-70 { opacity: .7; }
+.text-xs { font-size: .75rem; }
+.inline-block { display: inline-block; }
+.p-2 { padding: .5rem; }
+.h-40 { height: 10rem; }
+.overflow-y-auto { overflow-y: auto; }
