@@ -419,3 +419,331 @@ html, body, #root { height: 100%; margin: 0; background: radial-gradient(1200px 
 
 /* landing quick links */
 .landing-links { display:flex; gap: 10px; justify-content: center; }
+
+/* --- STYLES FOR DETAILED GNSS SIMULATION --- */
+
+.spoof-button {
+  margin-left: auto;
+  padding: 6px 12px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.spoof-button:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.target-location, .spoofed-target-location {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+  transform: translate(-50%, -50%);
+}
+
+.target-location {
+  background-color: rgba(46, 204, 113, 0.8);
+  border: 2px solid #27ae60;
+}
+
+.spoofed-target-location {
+  background-color: rgba(231, 76, 60, 0.8);
+  border: 2px solid #c0392b;
+}
+
+.drone.spoofed-ghost {
+  opacity: 0.4;
+  filter: grayscale(80%);
+}
+
+.path-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.actual-path {
+  fill: none;
+  stroke: #e74c3c;
+  stroke-width: 3;
+  stroke-dasharray: 5 5;
+}
+
+.spoofed-path {
+  fill: none;
+  stroke: #3498db;
+  stroke-width: 2;
+}
+
+/* Radio Tower */
+.radio-tower {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  text-align: center;
+  font-size: 12px;
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.tower-icon {
+  font-size: 48px;
+}
+
+/* Satellite Source */
+.satellite-source {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 40px;
+  background: #2980b9;
+  border-radius: 0 0 50px 50px;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-size: 10px;
+}
+.satellite-source::before {
+  content: 'SATELLITES';
+}
+
+/* Signals */
+.satellite-signal, .spoofing-signal {
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.satellite-signal {
+  stroke: #2ecc71;
+  stroke-dasharray: 4 4;
+}
+
+.spoofing-signal {
+  stroke: #e74c3c;
+  opacity: 0.8;
+}
+
+.jamming-circle {
+  fill: rgba(231, 76, 60, 0.2);
+  stroke: #c0392b;
+  stroke-width: 1;
+  transition: r 0.1s linear; /* Smooth radius growth */
+}
+
+/* --- LAYOUT FOR GNSS SIMULATION PAGE --- */
+.gnss-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 24px;
+  align-items: flex-start;
+}
+
+.stage-card.large {
+  flex: 1 1 1020px; /* Allow it to grow, but base it on the larger world size */
+}
+
+/* --- INFO PANEL STYLES --- */
+.info-panel {
+  flex: 1 1 400px; /* Allow it to grow, with a base width */
+  background-color: #1e2a3a;
+  border-radius: 8px;
+  padding: 20px;
+  color: #c0c5ce;
+  max-width: 500px;
+}
+
+.info-section {
+  margin-bottom: 24px;
+}
+
+.info-section h3 {
+  color: #569cd6;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+  border-bottom: 1px solid #2a3a4a;
+  padding-bottom: 8px;
+}
+
+.phase-text {
+  color: #4ec9b0;
+  font-weight: bold;
+}
+
+.phase-description, .status-message {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.status-message {
+  color: #dcdcaa;
+}
+
+.footprints-log {
+  background-color: #121a26;
+  height: 320px;
+  overflow-y: auto;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+}
+
+/* --- LOG ENTRY STYLES --- */
+.log-entry {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.log-timestamp {
+  color: #6a737d;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.log-auth .log-message { color: #2ecc71; }
+.log-warn .log-message { color: #f1c40f; }
+.log-attack .log-message { color: #e74c3c; font-weight: bold; }
+.log-spoof .log-message { color: #9b59b6; }
+
+/* --- PLAYBACK CONTROLS --- */
+.playback-controls {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.control-button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.control-button:hover {
+  background-color: #2980b9;
+}
+
+.control-button.reset {
+  background-color: #95a5a6;
+}
+.control-button.reset:hover {
+  background-color: #7f8c8d;
+}
+.control-button:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+
+/* --- ENHANCED INFO PANEL --- */
+.telemetry-readout, .signal-readout {
+  background-color: #121a26;
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.telemetry-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.telemetry-item:last-child {
+  margin-bottom: 0;
+}
+
+.coords-actual {
+  color: #e74c3c;
+  font-weight: bold;
+}
+.coords-spoofed {
+  color: #9b59b6;
+  font-weight: bold;
+}
+
+
+.signal-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.signal-item:last-child {
+  margin-bottom: 0;
+}
+.signal-label {
+  flex-basis: 180px;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+.signal-percent {
+  flex-basis: 40px;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.signal-bar-container {
+  flex-grow: 1;
+  height: 12px;
+  background-color: #2c3e50;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.signal-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.1s linear;
+}
+
+/* --- STYLES FOR DATA INJECTION SIM --- */
+
+.waypoint-marker {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(46, 204, 113, 0.8);
+  border: 2px solid #27ae60;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.waypoint-path {
+  fill: none;
+  stroke: #2ecc71;
+  stroke-width: 2;
+  stroke-dasharray: 8 8;
+  opacity: 0.6;
+}
+

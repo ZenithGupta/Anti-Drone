@@ -18,7 +18,7 @@ export default function DroneSimulation() {
   const [redirecting, setRedirecting] = useState(false);
   const [warning, setWarning] = useState(false);
   const [destroyed, setDestroyed] = useState(false);   // destruction state
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Use arrow keys or WASD to move the drone.");
 
   const moveRef = useRef(null);
   const lastWarnRef = useRef(false);
